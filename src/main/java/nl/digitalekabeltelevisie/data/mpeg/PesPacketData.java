@@ -30,6 +30,7 @@ package nl.digitalekabeltelevisie.data.mpeg;
 import static nl.digitalekabeltelevisie.util.Utils.*;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import java.util.Comparator;
 
 import nl.digitalekabeltelevisie.controller.KVP;
 import nl.digitalekabeltelevisie.controller.TreeNode;
@@ -281,6 +282,14 @@ public class PesPacketData  implements TreeNode{
 		return pesHandler;
 	}
 
+	public static Comparator<PesPacketData> PesPtsComparator = new Comparator<PesPacketData>() {
+		 
+		public int compare(PesPacketData pes1, PesPacketData pes2) {
+			long pts1 = pes1.getPesHeader().getPts();
+			long pts2 = pes2.getPesHeader().getPts();
+	
+			return (int)(pts1 - pts2);
+	}};
 
 
 }

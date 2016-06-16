@@ -30,6 +30,7 @@ package nl.digitalekabeltelevisie.data.mpeg.pes;
 import static nl.digitalekabeltelevisie.util.Utils.*;
 
 import java.awt.image.BufferedImage;
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,6 +138,7 @@ public class GeneralPesHandler  implements TreeNode{
 
 	public DefaultMutableTreeNode getJTreeNode(final int modus) {
 		final DefaultMutableTreeNode s=new DefaultMutableTreeNode(new KVP("PES Data"));
+		Collections.sort(pesPackets, PesPacketData.PesPtsComparator);
 		addListJTree(s,pesPackets,modus,"PES Packets");
 
 		return s;

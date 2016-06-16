@@ -148,6 +148,7 @@ public class Video14496Handler extends H26xHandler<Video14496PESDataField, NALUn
 
 	public DefaultMutableTreeNode getJTreeNode(final int modus) {
 		final DefaultMutableTreeNode s=new DefaultMutableTreeNode(new KVP("PES Data",this));
+		Collections.sort(pesPackets, PesPacketData.PesPtsComparator);
 		addListJTree(s,pesPackets,modus,"PES Packets");
 
 		return s;
@@ -180,7 +181,7 @@ public class Video14496Handler extends H26xHandler<Video14496PESDataField, NALUn
 
 	private static String getSlice_typeString(final int slice_type){
 		switch (slice_type) {
-		case  0: return "P";
+		case  0 : return "P";
 		case  1 : return "B";
 		case  2 : return "I";
 		case  3 : return "SP";
