@@ -36,6 +36,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import nl.digitalekabeltelevisie.controller.*;
 import nl.digitalekabeltelevisie.data.mpeg.PesPacketData;
 import nl.digitalekabeltelevisie.data.mpeg.pes.video26x.H26xPESDataField;
+import nl.digitalekabeltelevisie.data.mpeg.pes.video264.Slice_header;
 
 /**
  * @author Eric Berendsen
@@ -45,17 +46,28 @@ import nl.digitalekabeltelevisie.data.mpeg.pes.video26x.H26xPESDataField;
 public class Video14496PESDataField extends H26xPESDataField<NALUnit> implements TreeNode {
 
 	private static final Logger	logger	= Logger.getLogger(Video14496PESDataField.class.getName());
+	private String pictureType = "";
 
 
 	public Video14496PESDataField(final PesPacketData pesPacket) {
 		super(pesPacket);
-
+		
+		for (int nu = 0; nu < nalUnits.size(); nu++)
+        {
+            if (nalUnits.get(nu).getNal_unit_type() == 1 || nalUnits.get(nu).getNal_unit_type() == 5)
+            {
+            	Slice_layer_without_partitioning_rbsp rbsp = new  Slice_layer_without_partitioning_rbsp(nalUnits.get(nu).getRbsp());
+                
+            	int type = rbsp.getSlice_header().getSlice_type();
+            	pictureType = nl.digitalekabeltelevisie.data.mpeg.pes.video264.Slice_header.getSlice_typeString(type);
+            }
+        }
 	}
 
 
 
 	public DefaultMutableTreeNode getJTreeNode(final int modus) {
-		final DefaultMutableTreeNode s = super.getJTreeNode(modus,new KVP("Video 14496 PES Packet"));
+		final DefaultMutableTreeNode s = super.getJTreeNode(modus,new KVP(pictureType + " - Video 14496 PES Packet"));
 		addListJTree(s,nalUnits,modus,"NAL Units");
 		return s;
 

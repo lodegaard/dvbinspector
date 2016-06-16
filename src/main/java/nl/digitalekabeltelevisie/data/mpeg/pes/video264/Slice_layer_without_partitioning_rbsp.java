@@ -39,7 +39,11 @@ import nl.digitalekabeltelevisie.data.mpeg.pes.video26x.RBSP;
 public class Slice_layer_without_partitioning_rbsp extends RBSP {
 	
 	private Slice_header slice_header;
-
+	
+	public Slice_layer_without_partitioning_rbsp(RBSP rbsp) {
+		this(rbsp.getRbsp_bytes(), rbsp.getNumBytesInRBSP());
+	}
+	
 	protected Slice_layer_without_partitioning_rbsp(byte[] rbsp_bytes,
 			int numBytesInRBSP) {
 		super(rbsp_bytes, numBytesInRBSP);

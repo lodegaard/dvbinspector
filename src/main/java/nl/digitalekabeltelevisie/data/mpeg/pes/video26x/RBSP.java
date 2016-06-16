@@ -54,6 +54,14 @@ public abstract class RBSP implements TreeNode {
 	protected RBSP(byte[] rbsp_bytes, int numBytesInRBSP){
 		bitSource = new BitSource(rbsp_bytes, 0,numBytesInRBSP);
 	}
+	
+	public byte[] getRbsp_bytes() {
+		return bitSource.getBytes();
+	}
+	
+	public int getNumBytesInRBSP() {
+		return bitSource.getLength();
+	}
 
 	// used in Pic_parameter_set_rbsp and Seq_parameter_set_rbsp
 

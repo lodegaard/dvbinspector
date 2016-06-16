@@ -63,7 +63,7 @@ public class Slice_header implements TreeNode {
 	
 	public static String getSlice_typeString(int slice_type){
 		switch (slice_type) {
-		case  0: return "P";
+		case  0 : return "P";
 		case  1 : return "B";
 		case  2 : return "I";
 		case  3 : return "SP";

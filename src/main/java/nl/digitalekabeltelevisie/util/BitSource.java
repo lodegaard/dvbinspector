@@ -366,4 +366,12 @@ public class BitSource {
 
 		return b.toString();
 	}
+	
+	public byte[] getBytes() {
+		return bytes;
+	}
+	
+	public int getLength() {
+		return len;
+	}
 }

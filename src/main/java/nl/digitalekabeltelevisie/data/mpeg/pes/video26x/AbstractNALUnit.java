@@ -51,7 +51,7 @@ public abstract class AbstractNALUnit  implements TreeNode{
 	protected BitSource bs;
 	protected final byte[] rbsp_byte;
 	protected int numBytesInRBSP = 0;
-	protected RBSP rbsp = null;
+	public RBSP rbsp = null;
 
 	/**
 	 * 
